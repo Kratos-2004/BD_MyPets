@@ -1,0 +1,128 @@
+erDiagram
+    CLINICA ||--o{ EMPLEADO : "tiene/emplea"
+    CLINICA ||--o{ CORRAL : "gestiona stock de"
+    CLINICA ||--o{ SUMINISTRO : "gestiona stock de"
+    CLINICA ||--o{ CITA : "programa"
+    PROPIETARIO ||--o{ MASCOTA : "posee"
+    MASCOTA ||--o{ EXAMEN : "atiende/registra"
+    MASCOTA ||--o{ MASCOTA_CORRAL : "es hospitalizada en"
+    MASCOTA ||--o{ CITA : "agenda"
+    MASCOTA ||--o{ FACTURA : "genera"
+    EXAMEN ||--o{ EXAMEN_TRATAMIENTO : "propone"
+    EXAMEN ||--o{ CORRAL : "deriva en"
+    TRATAMIENTO ||--o{ EXAMEN_TRATAMIENTO : "es prescrito en"
+    CORRAL ||--o{ MASCOTA_CORRAL : "aloja"
+    FACTURA ||--o{ PAGO : "es saldada con"
+    SUMINISTRO }|--|| CLINICA : "pertenece a"
+
+    CLINICA {
+        int numero_clinica PK
+        string direccion
+        string telefono
+        string fax
+    }
+
+    EMPLEADO {
+        string tipo_documento PK
+        string numero_documento PK
+        string nombre
+        string apellido
+        string direccion
+        string telefono
+        date fecha_nacimiento
+        char sexo
+        string posicion
+        decimal salario_anual
+        int numero_clinica FK
+    }
+
+    PROPIETARIO {
+        string tipo_documento PK
+        string numero_documento PK
+        string nombre
+        string apellido
+        string direccion
+        string telefono
+    }
+
+    MASCOTA {
+        int id_mascota PK
+        string nombre
+        string tipo_mascota
+        string descripcion
+        date fecha_nacimiento
+        date fecha_registro
+        string estado
+        string tipo_documento_propietario FK
+        string numero_documento_propietario FK
+    }
+
+    EXAMEN {
+        int id_examen PK
+        datetime fecha_hora
+        string tipo_documento_veterinario FK
+        string numero_documento_veterinario FK
+        int id_mascota FK
+        text descripcion_resultados
+    }
+
+    TRATAMIENTO {
+        string codigo_tratamiento PK
+        text descripcion
+        decimal costo
+    }
+
+    EXAMEN_TRATAMIENTO {
+        int id_examen PK,FK
+        string codigo_tratamiento PK,FK
+        int cantidad
+        date fecha_inicio
+        date fecha_fin
+        text comentarios
+    }
+
+    CORRAL {
+        int id_corral PK
+        int numero_clinica FK
+        int capacidad
+        string estado
+    }
+
+    MASCOTA_CORRAL {
+        int id_mascota PK,FK
+        int id_corral PK,FK
+        datetime fecha_ingreso
+        datetime fecha_salida
+        text comentarios
+    }
+
+    FACTURA {
+        int numero_factura PK
+        date fecha_factura
+        string tipo_documento_propietario FK
+        string numero_documento_propietario FK
+        int id_mascota FK
+        decimal costo_total
+        date fecha_pago
+        string metodo_pago
+    }
+
+    SUMINISTRO {
+        int id_suministro PK
+        string nombre
+        text descripcion
+        string tipo
+        int cantidad_stock
+        int nivel_reorden
+        int cantidad_repedido
+        decimal costo
+        int numero_clinica FK
+    }
+
+    CITA {
+        int id_cita PK
+        string tipo_documento_propietario FK
+        string numero_documento_propietario FK
+        int id_mascota FK
+        datetime fecha_hora
+    }
