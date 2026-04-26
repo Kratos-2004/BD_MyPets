@@ -452,7 +452,7 @@ ORDER BY
     c.direccion;
 
 
-13. Reporte: Detalles de las facturas de los dueños de mascotas entre 2020 y 2023, ordenadas por fecha de factura (de la mayor a la menor)
+-- 13. Reporte: Detalles de las facturas de los dueños de mascotas entre 2020 y 2023, ordenadas por fecha de factura (de la mayor a la menor)
 
 SELECT
     f.numero_factura,
