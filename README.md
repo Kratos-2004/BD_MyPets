@@ -52,7 +52,7 @@ BD_MyPets/
 
 ## 🗂️ Modelo Entidad-Relación
 
-![Diagrama ER](Diagrama_ER/Diagrama_ER_MyPets.png)
+![Diagrama ER](Diagrama_ER/Diagrama_ER_MyPets.mmd)
 
 ---
 
