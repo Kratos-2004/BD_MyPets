@@ -274,7 +274,7 @@ JOIN
 JOIN
     TRATAMIENTO t ON et.codigo_tratamiento = t.codigo_tratamiento
 WHERE
-    e.id_examen = [ID_DEL_EXAMEN]; -- Reemplaza [ID_DEL_EXAMEN] con el ID del examen que desees consultar
+    e.id_examen = 2;
 
 
 -- 4. Reporte: Detalles de una factura por pagar (no pagada) para un dueño de mascota determinado
@@ -298,8 +298,8 @@ JOIN
     MASCOTA m ON f.id_mascota = m.id_mascota
 WHERE
     f.fecha_pago IS NULL
-    AND p.tipo_documento = '[TIPO_DOCUMENTO]' -- Reemplaza con el tipo de documento del propietario
-    AND p.numero_documento = '[NUMERO_DOCUMENTO]'; -- Reemplaza con el número de documento del propietario
+    AND p.tipo_documento = 'CC'
+    AND p.numero_documento = '333444555';
 
 
 -- 5. Reporte: Facturas que no se han pagado en una fecha determinada, ordenadas por número de factura
@@ -320,7 +320,7 @@ JOIN
     MASCOTA m ON f.id_mascota = m.id_mascota
 WHERE
     f.fecha_pago IS NULL
-    AND f.fecha_factura <= '[FECHA_DETERMINADA]' -- Reemplaza con la fecha que desees consultar
+    AND f.fecha_factura <= '2023-03-05'
 ORDER BY
     f.numero_factura;
 
@@ -343,8 +343,8 @@ WHERE
     AND co.id_corral NOT IN (
         SELECT id_corral
         FROM MASCOTA_CORRAL
-        WHERE fecha_ingreso <= '[FECHA_DETERMINADA]' -- Reemplaza con la fecha que desees consultar
-          AND (fecha_salida IS NULL OR fecha_salida >= '[FECHA_DETERMINADA]') -- Reemplaza con la fecha que desees consultar
+        WHERE fecha_ingreso <= '2023-01-15'
+          AND (fecha_salida IS NULL OR fecha_salida >= '2023-01-15')
     )
 ORDER BY
     c.numero_clinica, co.id_corral;
@@ -430,8 +430,8 @@ JOIN
 JOIN
     CLINICA cl ON em.numero_clinica = cl.numero_clinica
 WHERE
-    DATE(c.fecha_hora) = '[FECHA_DETERMINADA]' -- Reemplaza con la fecha que desees consultar
-    AND cl.numero_clinica = [NUMERO_CLINICA] -- Reemplaza con el número de la clínica
+    DATE(c.fecha_hora) = '2023-04-15'
+    AND cl.numero_clinica = 1
 ORDER BY
     c.fecha_hora;
 
@@ -487,8 +487,8 @@ SELECT
 FROM
     MASCOTA m
 WHERE
-    m.tipo_documento_propietario = '[TIPO_DOCUMENTO]' -- Reemplaza con el tipo de documento del propietario
-    AND m.numero_documento_propietario = '[NUMERO_DOCUMENTO]'; -- Reemplaza con el número de documento del propietario
+    m.tipo_documento_propietario = 'CC'
+    AND m.numero_documento_propietario = '333444555';
 
 
 -- 15. Reporte: Suministros farmacéuticos que deben reordenarse en cada clínica, ordenados por nombre de clínica
